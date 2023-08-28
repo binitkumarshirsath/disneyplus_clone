@@ -5,6 +5,8 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
+      xsm: { max: "639px" },
+
       sm: "640px",
       // => @media (min-width: 640px) { ... }
 
