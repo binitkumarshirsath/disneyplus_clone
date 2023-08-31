@@ -15,17 +15,16 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.photo = action.payload.photo;
     },
-    logut(state) {
+    logout(state) {
       state.name = null;
       state.email = null;
       state.photo = null;
     },
   },
 });
-
-export const { login, logut } = userSlice.actions;
-export const selectedUserName = (state) => state.user.name;
-export const selectedUserEmail = (state) => state.user.email;
-export const selectedUserPhoto = (state) => state.user.photo;
+export const { login, logout } = userSlice.actions;
+export const selectedUserName = (state) => state.auth.name;
+export const selectedUserEmail = (state) => state.auth.email;
+export const selectedUserPhoto = (state) => state.auth.photo;
 
 export default userSlice.reducer;
