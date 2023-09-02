@@ -28,11 +28,25 @@ const Navbar = () => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const { email, displayName, photoURL } = user;
-
+        const newUser = { displayName, email, photoURL };
+        localStorage.setItem("user", JSON.stringify(newUser));
         dispatch(login({ name: displayName, email, photo: photoURL }));
         navigate("/home");
+      } else {
+        localStorage.removeItem("user");
       }
     });
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      dispatch(
+        login({
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+        })
+      );
+    }
     // Clean up the subscription when the component unmounts
     return () => unsubscribe();
   }, [navigate, dispatch]);
@@ -41,7 +55,10 @@ const Navbar = () => {
     try {
       const { user } = await signInWithPopup(auth, provider);
       const { displayName, photoURL, email } = user;
+      const newUser = { displayName, photoURL, email };
+      localStorage.setItem("user", JSON.stringify(newUser));
       dispatch(login({ name: displayName, photo: photoURL, email }));
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +72,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="w-full h-[4.5rem] flex justify-between items-center bg-[#090b13] opacity-75 fixed">
+      <div className="w-full h-[4.5rem] flex justify-between items-center z-[999] bg-[#090b13] opacity-75 fixed">
         <img src={Logo} className="w-24 ml-10" alt="" />
 
         <div className=" md:hidden flex  items-center py-1 w-full">
@@ -110,7 +127,7 @@ const Navbar = () => {
           </button>
         )}
         {userEmail && (
-          <div className="group relative">
+          <div className="group relative z-[999]">
             <img
               className="w-[50px] h-[50px] rounded-full object-cover mr-16"
               src={userPhoto}
@@ -120,7 +137,7 @@ const Navbar = () => {
               onClick={async () => {
                 await auth.signOut(), dispatch(logout()), navigate("/");
               }}
-              className="absolute cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 w-24 h-11 left-[-20px] top-[60px] text-xl flex justify-center items-center font-extrabold text-white border-2 border-white"
+              className="absolute cursor-pointer z-[999]  hover:text-black hover:border-2 hover:border-gray-500 hover:bg-white opacity-0 group-hover:opacity-100  transition-all duration-300 w-24 h-11 left-[-20px] top-[60px] text-xl flex justify-center items-center font-extrabold text-white border-2 border-white"
             >
               Log out
             </div>

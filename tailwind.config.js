@@ -31,6 +31,7 @@ export default {
         "cta-logo-one": 'url("./assets/images/cta-logo-one.svg")',
         "cta-logo-two": 'url("./assets/images/cta-logo-two.png")',
         logo: 'url("./assets/images/logo.svg")',
+        "bg-home": 'url("./assets/images/home-background.png")',
       },
     },
   },
