@@ -25,7 +25,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const fireBaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(fireBaseApp);
-const db = getFirestore(fireBaseApp);
+const db = getFirestore(fireBaseApp, {
+  experimentalForceLongPolling: true, // this line
+  useFetchStreams: false, // and this line
+});
 const auth = getAuth();
 const storage = getStorage(fireBaseApp);
 const provider = new GoogleAuthProvider();
