@@ -1,11 +1,10 @@
 import React from "react";
 import ImageSlider from "../Slider";
 import ImageVideoPlayer from "../ImageVideoPlayer";
-import MovieList from "../Recommended";
+import ShowCard from "../ShowsCard";
 import { useDispatch } from "react-redux";
 import movies from "../../db";
 import { setMovies } from "../../store/movieSlice";
-import MoviePage from "../MoviePage";
 const Home = () => {
   const dispatch = useDispatch();
   const recommendedMovies = Object.values(movies).filter(
@@ -38,11 +37,10 @@ const Home = () => {
       <div className="w-[96%] mx-auto">
         <ImageSlider />
         <ImageVideoPlayer />
-        <MovieList heading="Recommended For you" data={recommendedMovies} />
-        <MovieList heading="Trending shows" data={trendingMovies} />
-        <MovieList heading="Originals" data={originalMovies} />
-        <MovieList heading="New shows" data={newMovies} />
-        <MoviePage />
+        <ShowCard heading="Recommended For you" data={recommendedMovies} />
+        <ShowCard heading="Trending shows" data={trendingMovies} />
+        <ShowCard heading="Originals" data={originalMovies} />
+        <ShowCard heading="New shows" data={newMovies} />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 const Recommends = (props) => {
   const { data } = props;
   return (
@@ -8,12 +9,12 @@ const Recommends = (props) => {
         {data &&
           data.map((movie, i) => {
             return (
-              <div key={i} className=" rounded-md">
+              <Link to={`movie/${movie.id}`} key={i} className=" rounded-md">
                 <img
                   className="rounded-md transform border-4 outline-gray-300 duration-300 hover:scale-110 "
                   src={movie.cardImg}
                 />
-              </div>
+              </Link>
             );
           })}
       </div>

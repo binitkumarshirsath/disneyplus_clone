@@ -22,35 +22,6 @@ import {
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  //checks if user is logged in and navigates to home
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const { email, displayName, photoURL } = user;
-        const newUser = { displayName, email, photoURL };
-        localStorage.setItem("user", JSON.stringify(newUser));
-        dispatch(login({ name: displayName, email, photo: photoURL }));
-        navigate("/home");
-      } else {
-        localStorage.removeItem("user");
-      }
-    });
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      dispatch(
-        login({
-          name: user.displayName,
-          email: user.email,
-          photo: user.photoURL,
-        })
-      );
-    }
-    // Clean up the subscription when the component unmounts
-    return () => unsubscribe();
-  }, [navigate, dispatch]);
-
   const handleAuth = async () => {
     try {
       const { user } = await signInWithPopup(auth, provider);
@@ -64,7 +35,6 @@ const Navbar = () => {
     }
   };
 
-  const userName = useSelector(selectedUserName);
   const userEmail = useSelector(selectedUserEmail);
   const userPhoto = useSelector(selectedUserPhoto);
   const className = `inline-block relative after:absolute after:bg-white after:h-[2px] after:w-0 after:top-6
@@ -80,7 +50,7 @@ const Navbar = () => {
             <div className="ml-10  flex gap-8 items-center">
               <div>
                 <img className="inline w-5 pb-1" src={Home} alt="home" />
-                <a className={className} href="#">
+                <a className={className} href="/home">
                   Home
                 </a>
               </div>
