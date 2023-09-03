@@ -13,13 +13,15 @@ import { fireBaseKeys } from "../config/keys/firebase";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: fireBaseKeys.apiKey,
-  authDomain: fireBaseKeys.authDomain,
-  projectId: fireBaseKeys.projectId,
-  storageBucket: fireBaseKeys.storageBucket,
-  messagingSenderId: fireBaseKeys.messagingSenderId,
-  appId: fireBaseKeys.appId,
-  measurementId: fireBaseKeys.measurementId,
+  apiKey: "AIzaSyDfVYrNh_C1lvnYlpavfPVIQZVzx97hhog",
+  authDomain: "disneyplus-clone-0001.firebaseapp.com",
+  databaseURL:
+    "https://disneyplus-clone-0001-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "disneyplus-clone-0001",
+  storageBucket: "disneyplus-clone-0001.appspot.com",
+  messagingSenderId: "278324683675",
+  appId: "1:278324683675:web:6e8a0aca5e93019e0db73e",
+  measurementId: "G-7DW90ZQ4CT",
 };
 
 // Initialize Firebase
