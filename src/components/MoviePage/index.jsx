@@ -9,7 +9,6 @@ const MoviePage = () => {
   const [movie] = Object.values(movies).filter((movie) => {
     return movie.id == id;
   });
-  console.log(movie);
   return (
     <div
       className={`justify-center w-full  h-screen bg-no-repeat  bg-cover bg-center rounded-lg`}
